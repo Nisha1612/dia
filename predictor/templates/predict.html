@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+<head>
+    <title>Diabetes Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'predictor/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Prediction Form</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Predict</button>
+        </form>
+        {% if result %}
+            <div class="result">
+                <h1>Prediction Result</h1>
+                <p>{{ result }}</p>
+                <a href="{% url 'predict_diabetes' %}">Predict Again</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
